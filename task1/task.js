@@ -4,12 +4,11 @@ const clearAll = document.querySelector('.clear')
 
 function saveState() {
     let text = editor.value;
-    let serialText = JSON.stringify(text);
-    localStorage.setItem("savedText",serialText);
+    localStorage.setItem("savedText",text);
 }
 
 function getState() {
-    let returnText = JSON.parse(localStorage.getItem("savedText"));
+    let returnText = localStorage.getItem("savedText");
     editor.value = returnText;
 }
 
@@ -23,6 +22,6 @@ window.onload = () => {
 }
 
 clearAll.onclick = () => {
-    localStorage.clear();
+    localStorage.removeItem("savedText");
     editor.value = '';
 }

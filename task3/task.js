@@ -14,14 +14,14 @@ signinBtn.onclick = (e) => {
     e.preventDefault();
 
     let data = new FormData(signinForm);
-    login.value='';
-    password.value='';
+    signinForm.reset();
 
     xhr.open('POST', 'https://students.netoservices.ru/nestjs-backend/auth', true);
+    xhr.responseType = 'json'
     xhr.send(data);
     xhr.onload = () => {
-            if(JSON.parse(xhr.response).success) {
-                let uid = JSON.parse(xhr.response).user_id;
+            if(xhr.response.success) {
+                let uid = xhr.response.user_id;
                 localStorage.setItem('uid', uid);
                 user.innerText = uid;
                 welcome.classList.add('welcome_active');
